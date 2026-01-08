@@ -45,6 +45,12 @@ https://minance-tan.vercel.app/
 To run the project locally, follow these steps:
 
 ```bash
+### Prerequisites
+
+- You must have a CoinGecko account to obtain an API key.
+
+### Steps
+
 # Clone the repository
 git clone https://github.com/your-username/minance.git
 
@@ -53,6 +59,12 @@ cd minance
 
 # Install dependencies
 npm install
+
+# Create a .env.local file in the root directory
+touch .env.local
+
+# Add your API key to .env.local
+COIN_GECKO_API_KEY=your_api_key_here
 
 # Start the development server
 npm run dev

@@ -1,0 +1,33 @@
+.crypto-symbol {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 60px;
+    font-weight: 500;
+}
+
+.coins-table {
+    tbody {
+        tr {
+            vertical-align: middle;
+
+            &:first-child {
+                td {
+                    padding-top: unset;
+                }
+            }
+
+            &:last-child {
+                padding-bottom: unset;
+            }
+
+            td {
+                padding-top: 16px;
+                padding-right: 8px;
+
+                &:last-child {
+                    padding-right: unset;
+                }
+            }
+        }
+    }
+}

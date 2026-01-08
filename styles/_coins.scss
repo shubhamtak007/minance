@@ -1,0 +1,36 @@
+.coins-sst-container {
+    margin-top: 30px;
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.coins-server-side-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+
+    tr {
+        border-top: 1px solid #ebeef5;
+        border-bottom: 1px solid #ebeef5;
+    }
+
+    th,
+    td {
+        padding: 12px 4px;
+    }
+
+    thead {
+        tr {
+            th {
+                font-weight: 600;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            font-size: 14px;
+            line-height: 1.25rem;
+        }
+    }
+}

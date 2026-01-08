@@ -1,0 +1,54 @@
+.header-container {
+    border-bottom: .5px solid #dde0e4;
+    padding: 6px 12px;
+    overflow-x: scroll;
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+
+        .logo {
+            color: #1e7ce0;
+            font-size: 20px;
+            font-weight: 700;
+            margin-right: 12px;
+            background-color: #fff;
+        }
+    }
+}
+
+.main-container {
+    height: calc(100vh - 47px);
+    overflow-y: scroll;
+    padding: 12px;
+}
+
+.success-text {
+    color: #19af55;
+}
+
+.danger-text {
+    color: #d82f44;
+}
+
+.pair-container {
+    display: flex;
+    padding: 2px 6px;
+    background-color: #f9fafc;
+    border-radius: 6px;
+    font-size: 12.5px;
+    margin-right: 8px;
+    width: max-content;
+
+    .name {
+        padding-right: 6px;
+        color: #81878c;
+
+    }
+
+    .value {
+        font-weight: 600;
+    }
+}

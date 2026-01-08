@@ -56,3 +56,7 @@ npm install
 
 # Start the development server
 npm run dev
+```
+
+## License
+Minance is [MIT licensed](./LICENSE).

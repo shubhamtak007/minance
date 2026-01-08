@@ -14,110 +14,113 @@ function CoinList() {
 
     return (
         <div className="coins-sst-container">
-            {
-                fetchingCoinList ?
-                    <Skeleton className="rounded-md w-full h-[400px]" /> :
-                    <div>
-                        <table className="coins-server-side-table">
-                            <thead>
-                                <tr>
-                                    <th className="w-[5%] text-center">#</th>
-                                    <th className="w-[35%] text-left">Coin</th>
-                                    <th className="text-right">Current Price</th>
-                                    <th className="text-right">24h</th>
-                                    <th className="text-right">Total Volume</th>
-                                    <th className="text-right">Market Cap.</th>
-                                </tr>
-                            </thead>
 
-                            <tbody>
-                                {
-                                    (coinList.length > 0) ? coinList.map((coin, index) => {
-                                        return (
-                                            <tr key={coin.id}>
-                                                <td className="text-center">
-                                                    {index + 1 + ((currentPageNumber > 1) ? ((currentPageNumber - 1) * 10) : 0)}
-                                                </td>
+            <table className="coins-server-side-table">
+                <thead>
+                    <tr>
+                        <th className="w-[5%] text-center">#</th>
+                        <th className="w-[35%] text-left">Coin</th>
+                        <th className="text-right">Current Price</th>
+                        <th className="text-right">24h</th>
+                        <th className="text-right">Total Volume</th>
+                        <th className="text-right">Market Cap.</th>
+                    </tr>
+                </thead>
 
-                                                <td>
-                                                    <div className="flex items-center">
-                                                        <div className="mr-[6px]">
-                                                            <Image
-                                                                className="object-contain rounded-[10px]"
-                                                                width={24}
-                                                                height={24}
-                                                                alt="Picture of coin"
-                                                                src={coin.image}
-                                                            />
-                                                        </div>
+                {
+                    fetchingCoinList ?
+                        <tbody>
+                            <tr>
+                                <td colSpan={6} className="!p-[unset]">
+                                    <Skeleton className="rounded-md w-[100%] h-[490px]" />
+                                </td>
+                            </tr>
+                        </tbody> :
+                        <tbody>
+                            {
+                                ((coinList.length > 0) ? coinList.map((coin, index) => {
+                                    return (
+                                        <tr key={coin.id}>
+                                            <td className="text-center">
+                                                {index + 1 + ((currentPageNumber > 1) ? ((currentPageNumber - 1) * 10) : 0)}
+                                            </td>
 
-                                                        <div className="font-semibold mr-[6px]">
-                                                            {coin.name}
-                                                        </div>
-
-                                                        <div className="text-[12px]">
-                                                            {coin.symbol.toUpperCase()}
-                                                        </div>
+                                            <td>
+                                                <div className="flex items-center">
+                                                    <div className="mr-[6px]">
+                                                        <Image
+                                                            className="object-contain rounded-[10px]"
+                                                            width={24}
+                                                            height={24}
+                                                            alt="Picture of coin"
+                                                            src={coin.image}
+                                                        />
                                                     </div>
-                                                </td>
 
-                                                <td className="text-right">
-                                                    {formatValueIntoCommaSeparated(coin.current_price, 5, true)}
-                                                </td>
-
-                                                <td className="text-right">
-                                                    <div className={`flex items-center justify-end ${(coin.price_change_percentage_24h > 0 ? 'success-text' : 'danger-text')}`}>
-                                                        <span className="relative bottom-[1px]">
-                                                            {(coin.price_change_percentage_24h > 0) ? <FaCaretUp /> : <FaCaretDown />}
-                                                        </span>
-                                                        {roundOffNumber(coin.price_change_percentage_24h, 2) + '%'}
+                                                    <div className="font-semibold mr-[6px]">
+                                                        {coin.name}
                                                     </div>
-                                                </td>
 
-                                                <td className="text-right">
-                                                    {formatValueIntoCommaSeparated(coin.total_volume, 2, true)}
-                                                </td>
+                                                    <div className="text-[12px]">
+                                                        {coin.symbol.toUpperCase()}
+                                                    </div>
+                                                </div>
+                                            </td>
 
-                                                <td className="text-right">
-                                                    {formatValueIntoCommaSeparated(coin.market_cap, 2, true)}
-                                                </td>
-                                            </tr>
-                                        )
-                                    }) :
+                                            <td className="text-right">
+                                                {formatValueIntoCommaSeparated(coin.current_price, 5, true)}
+                                            </td>
 
-                                        <tr>
-                                            <td
-                                                colSpan={6}
-                                                className="italic text-[#eee]"
-                                            >
-                                                No coins found.
+                                            <td className="text-right">
+                                                <div className={`flex items-center justify-end ${(coin.price_change_percentage_24h > 0 ? 'success-text' : 'danger-text')}`}>
+                                                    <span className="relative bottom-[1px]">
+                                                        {(coin.price_change_percentage_24h > 0) ? <FaCaretUp /> : <FaCaretDown />}
+                                                    </span>
+                                                    {roundOffNumber(coin.price_change_percentage_24h, 2) + '%'}
+                                                </div>
+                                            </td>
+
+                                            <td className="text-right">
+                                                {formatValueIntoCommaSeparated(coin.total_volume, 2, true)}
+                                            </td>
+
+                                            <td className="text-right">
+                                                {formatValueIntoCommaSeparated(coin.market_cap, 2, true)}
                                             </td>
                                         </tr>
-                                }
-                            </tbody>
-                        </table>
+                                    )
+                                }) : <tr>
+                                    <td
+                                        colSpan={6}
+                                        className="italic text-[#eee]"
+                                    >
+                                        No coins found.
+                                    </td>
+                                </tr>)
+                            }
+                        </tbody>
+                }
+            </table>
 
-                        <div className="space-x-2 mt-[12px] text-center">
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => { setCurrentPageNumber(currentPageNumber - 1) }}
-                                disabled={currentPageNumber == 1}
-                            >
-                                Previous
-                            </Button>
+            <div className="pagination-btn-group space-x-2 mt-[12px] text-center">
+                <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => { setCurrentPageNumber(currentPageNumber - 1) }}
+                    disabled={(currentPageNumber === 1 || fetchingCoinList)}
+                >
+                    Previous
+                </Button>
 
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => { setCurrentPageNumber((prev) => prev + 1) }}
-                                disabled={coinList.length == 0}
-                            >
-                                Next
-                            </Button>
-                        </div>
-                    </div>
-            }
+                <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => { setCurrentPageNumber((prev) => prev + 1) }}
+                    disabled={(coinList.length === 0 || fetchingCoinList)}
+                >
+                    Next
+                </Button>
+            </div>
         </div>
     )
 }

@@ -20,7 +20,6 @@ function useCoinList({ currentPageNumber }: CoinListHookProps) {
         setFetchingCoinList(true);
 
         const params = {
-            mode: 'paginated',
             page: currentPageNumber,
             perPage: 10
         }

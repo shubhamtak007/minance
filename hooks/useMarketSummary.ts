@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { retrieveCoinList, retrieveTrendingCoins } from '@/services/crypto-currency.service';
+import { retrieveCoinList, retrieveAllCoins, retrieveTrendingCoins } from '@/services/crypto-currency.service';
 import { CryptoCurrency, MarketSummaryItem, CoingeckoCrypto, TrendingCoin, MarketSummaryRefMap } from '@/interfaces/CryptoCurrency';
 import { roundOffNumber } from '@/services/utils.service';
 
@@ -24,14 +24,14 @@ function useMarketSummary() {
         try {
             const promises = [
                 retrieveTrendingCoins(),
-                retrieveCoinList({ mode: 'all' })
+                retrieveAllCoins()
             ]
 
             const responses = await Promise.all(promises);
 
             if (responses.length > 0) {
                 if (responses[0].length > 0) createTrendingCoinList(responses[0]);
-                if (responses[1].data.data.length > 0) createGainerLoserAndVolumeList(responses[1].data.data);
+                if (responses[1].length > 0) createGainerLoserAndVolumeList(responses[1]);
                 fetchNameAndImageOfCryptoCurrencies();
             }
         } catch (error) {
@@ -78,7 +78,7 @@ function useMarketSummary() {
         })
 
         try {
-            const response = await retrieveCoinList({ mode: 'paginated', symbols: symbolsInLowerCase.join(',') });
+            const response = await retrieveCoinList({ symbols: symbolsInLowerCase.join(',') });
 
             if (response && response.data) {
                 for (const crypto of coins) {

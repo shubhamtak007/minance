@@ -29,7 +29,6 @@ export async function GET(request: Request) {
         return NextResponse.json(response.data);
 
     } catch (error: unknown) {
-        debugger;
         if (axios.isAxiosError(error)) {
             return NextResponse.json(
                 {
@@ -42,7 +41,6 @@ export async function GET(request: Request) {
         }
 
         if (error instanceof Error) {
-            debugger;
             return NextResponse.json(
                 {
                     message: error.message,

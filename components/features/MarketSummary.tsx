@@ -9,7 +9,7 @@ function MarketSummary() {
 
     return (
         <>
-            <div className="text-[22px] font-medium mb-[12px]">
+            <div className="text-[20px] font-medium mb-[12px]">
                 Overview
             </div>
 

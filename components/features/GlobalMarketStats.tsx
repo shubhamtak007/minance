@@ -85,8 +85,15 @@ function GlobalMarketStats() {
 
 
                                 <div className="value">
-                                    <span className="mr-[10px]">BTC {roundOffNumber(globalMarketStats.totalMarketCapital.percent.btc, 2) + '%'}</span>
-                                    <span>ETH {roundOffNumber(globalMarketStats.totalMarketCapital.percent.eth, 2) + '%'}</span>
+                                    <span className="mr-[10px]">
+                                        {Object.keys(globalMarketStats.totalMarketCapital.percent)[0].toUpperCase()}&nbsp;
+                                        {roundOffNumber(Object.values(globalMarketStats.totalMarketCapital.percent)[0], 2) + '%'}
+                                    </span>
+
+                                    <span>
+                                        {Object.keys(globalMarketStats.totalMarketCapital.percent)[1].toUpperCase()}&nbsp;
+                                        {roundOffNumber(Object.values(globalMarketStats.totalMarketCapital.percent)[1], 2) + '%'}
+                                    </span>
                                 </div>
                             </div>
                         }

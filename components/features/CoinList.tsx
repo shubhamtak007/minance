@@ -81,18 +81,18 @@ function CoinList() {
                                             </td>
 
                                             <td className="text-right">
-                                                {formatValueIntoCommaSeparated(coin.total_volume, 2, true)}
+                                                {formatValueIntoCommaSeparated(coin.total_volume, null, true)}
                                             </td>
 
                                             <td className="text-right">
-                                                {formatValueIntoCommaSeparated(coin.market_cap, 2, true)}
+                                                {formatValueIntoCommaSeparated(coin.market_cap, null, true)}
                                             </td>
                                         </tr>
                                     )
                                 }) : <tr>
                                     <td
                                         colSpan={6}
-                                        className="italic text-[#eee]"
+                                        className="italic text-[#ccc] text-center"
                                     >
                                         No coins found.
                                     </td>

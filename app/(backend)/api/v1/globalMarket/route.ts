@@ -62,7 +62,7 @@ function createGlobalMarketStatistics(globalMarketData: GlobalMarketDataCoinGeck
         exchanges: formatValueIntoCommaSeparated(globalMarketData.markets),
         totalMarketCapital: {
             value: globalMarketData.total_market_cap.usd,
-            percent: globalMarketData.market_cap_percentage
+            percent: sortCoinsMarketCapShare(globalMarketData.market_cap_percentage)
         },
         totalMarketCapitalChange24hInUsd: globalMarketData.market_cap_change_percentage_24h_usd,
         totalVolume: globalMarketData.total_volume.usd,
@@ -70,4 +70,10 @@ function createGlobalMarketStatistics(globalMarketData: GlobalMarketDataCoinGeck
     }
 
     return marketStats;
+}
+
+function sortCoinsMarketCapShare(coinsMarketCapShare: Record<string, number>) {
+    const coins = Object.entries(coinsMarketCapShare);
+    coins.sort((a, b) => b[1] - a[1]);
+    return Object.fromEntries(coins);
 }

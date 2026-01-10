@@ -32,7 +32,7 @@ function CoinList() {
                     fetchingCoinList ?
                         <tbody>
                             <tr>
-                                <td colSpan={6} className="!p-[unset]">
+                                <td colSpan={7} className="!p-[unset]">
                                     <Skeleton className="rounded-md w-[100%] h-[490px]" />
                                 </td>
                             </tr>
@@ -101,7 +101,7 @@ function CoinList() {
                                     )
                                 }) : <tr>
                                     <td
-                                        colSpan={6}
+                                        colSpan={7}
                                         className="italic text-[#ccc] text-center"
                                     >
                                         No coins found.

@@ -1,5 +1,7 @@
+// @use "@/styles/variables" as *;
+
 .header-container {
-    border-bottom: .5px solid #dde0e4;
+    border-bottom: .5px solid var(--border-color);
     padding: 6px 12px;
     overflow-x: scroll;
 

@@ -1,7 +1,7 @@
 .coins-sst-container {
     margin-top: 30px;
     width: 100%;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .coins-server-side-table {
@@ -23,6 +23,10 @@
         tr {
             th {
                 font-weight: 600;
+                position: sticky;
+                top: -13px;
+                z-index: 10;
+                background: #fff;
             }
         }
     }

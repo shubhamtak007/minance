@@ -21,7 +21,7 @@ function useCoinList({ currentPageNumber }: CoinListHookProps) {
 
         const params = {
             page: currentPageNumber,
-            perPage: 10
+            perPage: 25
         }
 
         try {

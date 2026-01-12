@@ -2,29 +2,53 @@
 
 import useCoinList from '@/hooks/useCoinList';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { formatValueIntoCommaSeparated, roundOffNumber, formatValueInCompactUsd } from '@/services/utils.service';
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip/tooltip';
+import { BsFillInfoCircleFill } from "react-icons/bs";
 
 function CoinList() {
     let [currentPageNumber, setCurrentPageNumber] = useState(1);
+    const colspanValue = useRef<number>(8).current;
     const { coinList, fetchingCoinList } = useCoinList({ currentPageNumber });
 
     return (
         <div className="coins-sst-container">
-
             <table className="coins-server-side-table">
                 <thead>
                     <tr>
                         <th className="w-[5%] text-center">#</th>
                         <th className="w-[35%] text-left">Coin</th>
                         <th className="text-right">Current Price</th>
-                        <th className="text-right">1h</th>
-                        <th className="text-right">24h</th>
+                        <th className="text-right">1h%</th>
+                        <th className="text-right">24h%</th>
                         <th className="text-right">Total Volume</th>
                         <th className="text-right">Market Cap.</th>
+                        <th className="text-right">
+                            <div className="flex justify-end">
+                                <div className="mr-[4px]">
+                                    Circulating Supply
+                                </div>
+
+                                <Tooltip>
+                                    <TooltipTrigger>
+                                        <BsFillInfoCircleFill />
+                                    </TooltipTrigger>
+
+                                    <TooltipContent
+                                        data-side={'top'}
+                                        side={'top'}
+                                        className="w-[300px]"
+                                    >
+                                        The amount of coins that are circulating in the market and are in public
+                                        hands. It is analogous to the flowing shares in the stock market.
+                                    </TooltipContent>
+                                </Tooltip>
+                            </div>
+                        </th>
                     </tr>
                 </thead>
 
@@ -32,7 +56,7 @@ function CoinList() {
                     fetchingCoinList ?
                         <tbody>
                             <tr>
-                                <td colSpan={7} className="!p-[unset]">
+                                <td colSpan={colspanValue} className="!p-[unset]">
                                     <Skeleton className="rounded-md w-[100%] h-[490px]" />
                                 </td>
                             </tr>
@@ -47,18 +71,25 @@ function CoinList() {
                                             </td>
 
                                             <td>
-                                                <div className="flex items-center">
-                                                    <div className="mr-[6px]">
-                                                        <Image
-                                                            className="object-contain rounded-[10px]"
-                                                            width={24}
-                                                            height={24}
-                                                            alt={`Image of ${coin.name}`}
-                                                            src={coin.image}
-                                                        />
+                                                <div className="w-[100%] flex items-center">
+                                                    <div className="mr-[8px]">
+                                                        {
+                                                            coin.image ?
+                                                                <Image
+                                                                    className="object-contain rounded-[10px]"
+                                                                    width={24}
+                                                                    height={24}
+                                                                    alt={`Image of ${coin.name}`}
+                                                                    src={coin.image}
+                                                                />
+                                                                :
+                                                                <div className="coin-letter-mark">
+                                                                    {coin.symbol[0].toUpperCase()}
+                                                                </div>
+                                                        }
                                                     </div>
 
-                                                    <div className="font-semibold mr-[6px]">
+                                                    <div className="text-left font-semibold mr-[6px]">
                                                         {coin.name}
                                                     </div>
 
@@ -73,7 +104,7 @@ function CoinList() {
                                             </td>
 
                                             <td className="text-right">
-                                                {<div className={`flex items-center justify-end ${(coin.price_change_percentage_1h_in_currency > 0 ? 'success-text' : 'danger-text')}`}>
+                                                {coin.price_change_percentage_1h_in_currency && <div className={`flex items-center justify-end ${(coin.price_change_percentage_1h_in_currency > 0 ? 'success-text' : 'danger-text')}`}>
                                                     <span className="relative bottom-[1px]">
                                                         {(coin.price_change_percentage_1h_in_currency > 0) ? <FaCaretUp /> : <FaCaretDown />}
                                                     </span>
@@ -82,26 +113,30 @@ function CoinList() {
                                             </td>
 
                                             <td className="text-right">
-                                                <div className={`flex items-center justify-end ${(coin.price_change_percentage_24h > 0 ? 'success-text' : 'danger-text')}`}>
+                                                {coin.price_change_percentage_24h && <div className={`flex items-center justify-end ${(coin.price_change_percentage_24h > 0 ? 'success-text' : 'danger-text')}`}>
                                                     <span className="relative bottom-[1px]">
                                                         {(coin.price_change_percentage_24h > 0) ? <FaCaretUp /> : <FaCaretDown />}
                                                     </span>
                                                     {roundOffNumber(coin.price_change_percentage_24h, 1) + '%'}
-                                                </div>
+                                                </div>}
                                             </td>
 
                                             <td className="text-right">
-                                                {formatValueInCompactUsd(coin.total_volume, 2)}
+                                                {coin.total_volume && formatValueInCompactUsd(coin.total_volume, 2)}
                                             </td>
 
                                             <td className="text-right">
-                                                {formatValueInCompactUsd(coin.market_cap, 2)}
+                                                {coin.market_cap && formatValueInCompactUsd(coin.market_cap, 2)}
+                                            </td>
+
+                                            <td className="text-right">
+                                                {coin.circulating_supply && formatValueInCompactUsd(coin.circulating_supply, 2)}
                                             </td>
                                         </tr>
                                     )
                                 }) : <tr>
                                     <td
-                                        colSpan={7}
+                                        colSpan={colspanValue}
                                         className="italic text-[#ccc] text-center"
                                     >
                                         No coins found.

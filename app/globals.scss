@@ -1,6 +1,7 @@
 @use "@/styles/application-wide";
 @use "@/styles/market-summary";
 @use "@/styles/coins";
+@use "@/styles/tooltip";
 @use "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));

@@ -7,7 +7,7 @@ import { formatValueIntoCommaSeparated, roundOffNumber, formatValueInCompactUsd 
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { BsFillInfoCircleFill } from "react-icons/bs";
 
 function CoinList() {

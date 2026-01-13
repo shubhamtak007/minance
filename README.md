@@ -52,7 +52,7 @@ To run the project locally, follow these steps:
 ### Steps
 
 # Clone the repository
-git clone https://github.com/your-username/minance.git
+git clone https://github.com/shubhamtak007/minance.git
 
 # Navigate to the project directory
 cd minance

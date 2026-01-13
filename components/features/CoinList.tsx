@@ -18,6 +18,11 @@ function CoinList() {
     return (
         <div className="coins-sst-container">
             <table className="coins-server-side-table">
+                <colgroup>
+                    <col></col>
+                    <col className="w-[200px]"></col>
+                </colgroup>
+
                 <thead>
                     <tr>
                         <th className="w-[5%] text-center">#</th>
@@ -71,12 +76,12 @@ function CoinList() {
                                             </td>
 
                                             <td>
-                                                <div className="w-[100%] flex items-center">
-                                                    <div className="mr-[8px]">
+                                                <div className="min-w-[120px] flex items-center">
+                                                    <div className="min-w-[26px] mr-[8px]">
                                                         {
                                                             coin.image ?
                                                                 <Image
-                                                                    className="object-contain rounded-[10px]"
+                                                                    className="object-cover rounded-[10px]"
                                                                     width={24}
                                                                     height={24}
                                                                     alt={`Image of ${coin.name}`}
@@ -91,10 +96,10 @@ function CoinList() {
 
                                                     <div className="text-left font-semibold mr-[6px]">
                                                         {coin.name}
-                                                    </div>
 
-                                                    <div className="text-[12px]">
-                                                        {coin.symbol.toUpperCase()}
+                                                        <div className="text-[12px] text-gray-400">
+                                                            {coin.symbol.toUpperCase()}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </td>

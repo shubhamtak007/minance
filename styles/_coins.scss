@@ -3,7 +3,7 @@
     width: 100%;
     overflow-x: scroll;
     border-radius: 6px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--main-color);
 }
 
 .coins-server-side-table {
@@ -13,8 +13,8 @@
     padding-right: 15px;
 
     tr {
-        border-top: 1px solid var(--border-color);
-        border-bottom: 1px solid var(--border-color);
+        border-top: 1px solid var(--main-color);
+        border-bottom: 1px solid var(--main-color);
     }
 
     th,
@@ -24,7 +24,7 @@
 
     thead {
         position: sticky;
-        top: 0px;
+        top: -13px;
         z-index: 10;
         background: #fff;
 

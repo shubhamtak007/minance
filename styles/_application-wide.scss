@@ -1,9 +1,11 @@
-// @use "@/styles/variables" as *;
-
 .header-container {
-    border-bottom: .5px solid var(--border-color);
+    border-bottom: 1px solid var(--main-color);
     padding: 6px 12px;
     overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
     .navbar {
         display: flex;
@@ -22,9 +24,10 @@
 }
 
 .main-container {
-    height: calc(100vh - 47px);
+    height: calc(100vh - 43px);
     overflow-y: scroll;
     padding: 12px;
+    scroll-behavior: smooth;
 }
 
 .success-text {

@@ -12,6 +12,7 @@ import { BsFillInfoCircleFill } from "react-icons/bs";
 
 function CoinList() {
     let [currentPageNumber, setCurrentPageNumber] = useState(1);
+    const itemsPerPage = useRef<number>(25).current;
     const colspanValue = useRef<number>(9).current;
     const { coinList, fetchingCoinList } = useCoinList({ currentPageNumber });
 
@@ -69,7 +70,7 @@ function CoinList() {
                                         return (
                                             <tr key={coin.id}>
                                                 <td className="text-center">
-                                                    {index + 1 + ((currentPageNumber > 1) ? ((currentPageNumber - 1) * 10) : 0)}
+                                                    {index + 1 + ((currentPageNumber > 1) ? ((currentPageNumber - 1) * itemsPerPage) : 0)}
                                                 </td>
 
                                                 <td>

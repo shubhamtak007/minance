@@ -52,10 +52,10 @@ To run the project locally, follow these steps:
 ### Steps
 
 # Clone the repository
-git clone https://github.com/shubhamtak007/minance.git
+git clone https://github.com/shubhamtak007/coinova.git
 
 # Navigate to the project directory
-cd minance
+cd coinova
 
 # Install dependencies
 npm install

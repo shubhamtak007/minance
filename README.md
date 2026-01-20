@@ -3,7 +3,7 @@
 Coinova is a modern, real-time cryptocurrency dashboard that helps users track market trends and major coins through a clean and responsive interface.
 
 ## 🌐 Live Demo
-https://minance-tan.vercel.app/
+https://coinova-app.vercel.app/
 
 ---
 

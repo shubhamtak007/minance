@@ -1,5 +1,5 @@
 import MarketSummary from "@/components/features/MarketSummary";
-import CoinList from "@/components/features/CoinList";
+import CoinList from "@/components/features/coins/coin-list";
 
 export default function Home() {
     return (

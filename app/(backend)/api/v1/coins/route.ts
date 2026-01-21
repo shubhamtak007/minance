@@ -24,7 +24,8 @@ export async function GET(request: Request) {
         symbols: searchParams.get('symbols') ? searchParams.get('symbols') : null,
         page: searchParams.get('page') ? searchParams.get('page') : 1,
         per_page: searchParams.get('perPage') ? searchParams.get('perPage') : '20',
-        price_change_percentage: '1h,7d,14d,30d'
+        price_change_percentage: '1h,7d,14d,30d',
+        order: searchParams.get('order') ? searchParams.get('order') : 'market_cap_desc'
     }
 
     try {

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
+import { getItemsPerPage } from '@/services/utils.service';
 
 const coinGeckoApiProperties = axios.create({
     baseURL: 'https://api.coingecko.com/api/',
@@ -23,9 +24,10 @@ export async function GET(request: Request) {
         vs_currency: 'usd',
         symbols: searchParams.get('symbols') ? searchParams.get('symbols') : null,
         page: searchParams.get('page') ? searchParams.get('page') : 1,
-        per_page: searchParams.get('perPage') ? searchParams.get('perPage') : '20',
+        per_page: searchParams.get('per_page') ? searchParams.get('per_page') : getItemsPerPage(),
         price_change_percentage: '1h,7d,14d,30d',
-        order: searchParams.get('order') ? searchParams.get('order') : 'market_cap_desc'
+        order: searchParams.get('order') ? searchParams.get('order') : 'market_cap_desc',
+        names: searchParams.get('names') ? searchParams.get('names') : null
     }
 
     try {

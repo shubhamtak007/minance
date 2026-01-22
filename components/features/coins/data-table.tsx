@@ -9,7 +9,7 @@ interface DataTableProps<TData> {
     currentPageNumber?: number
 }
 
-function DataTable<TData>({ list, columns, listEmptyMessage, fetchingList, currentPageNumber }: DataTableProps<TData>) {
+function DataTable<TData,>({ list, columns, listEmptyMessage, fetchingList, currentPageNumber }: DataTableProps<TData>) {
     const tableConfig = useReactTable<TData>({
         data: list,
         columns,
@@ -20,7 +20,7 @@ function DataTable<TData>({ list, columns, listEmptyMessage, fetchingList, curre
     });
 
     return (
-        <div className="coins-sst-container">
+        <div className="coins-sst-wrapper">
             <table className="coins-server-side-table">
                 <thead>
                     {

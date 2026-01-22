@@ -4,47 +4,56 @@
     overflow-x: auto;
     border-radius: 6px;
     border: 1px solid var(--main-color);
-}
 
-.coins-server-side-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-    padding-right: 15px;
-
-    tr {
-        border-top: 1px solid var(--main-color);
-        border-bottom: 1px solid var(--main-color);
+    .search-bar {
+        place-items: end;
+        margin: 12px;
     }
 
-    th,
-    td {
-        padding: 10px 4px;
-    }
+    .coins-sst-wrapper {
+        overflow-x: auto;
 
-    thead {
-        position: sticky;
-        top: -13px;
-        z-index: 10;
-        background: #fff;
+        .coins-server-side-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            padding-right: 15px;
 
-        tr {
-            border-top: unset;
-
-            th {
-                font-weight: 600;
-                position: sticky;
+            tr {
+                border-top: 1px solid var(--main-color);
+                border-bottom: 1px solid var(--main-color);
             }
-        }
-    }
 
-    tbody {
-        tr {
-            font-size: 14px;
-            line-height: 1.25rem;
+            th,
+            td {
+                padding: 10px 8px;
+            }
 
-            &:last-child {
-                border-bottom: unset;
+            thead {
+                position: sticky;
+                top: -13px;
+                z-index: 10;
+                background: #fff;
+
+                tr {
+                    border-top: unset;
+
+                    th {
+                        font-weight: 600;
+                        position: sticky;
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    font-size: 14px;
+                    line-height: 1.25rem;
+
+                    &:last-child {
+                        border-bottom: unset;
+                    }
+                }
             }
         }
     }
@@ -54,5 +63,18 @@
     button {
         color: #333;
         cursor: pointer;
+
+        &:hover {
+            background-color: var(--main-color-2);
+            outline: 1px solid var(--main-color-2);
+            border-color: var(--main-color-2);
+            color: #fff;
+        }
+
+        &:focus-visible {
+            outline: 1px solid var(--main-color-2);
+            border: 1px solid var(--main-color-2);
+            box-shadow: unset;
+        }
     }
 }

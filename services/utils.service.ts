@@ -30,4 +30,8 @@ function formatValueIntoCommaSeparated(value: number, decimalPlaces?: number | n
     }).format(roundOffValue);
 }
 
-export { roundOffNumber, formatValueInCompactUsd, formatValueIntoCommaSeparated }
+function getItemsPerPage() {
+    return 25;
+}
+
+export { roundOffNumber, formatValueInCompactUsd, formatValueIntoCommaSeparated, getItemsPerPage }

@@ -1,27 +1,43 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { retrieveCoinList } from '@/services/crypto-currency.service';
+import { getItemsPerPage } from '@/services/utils.service';
 import type { CoingeckoCrypto } from '@/interfaces/CryptoCurrency';
 
 interface CoinListHookProps {
-    currentPageNumber: number
+    currentPageNumber: number,
+    searchValue: string
 }
 
-function useCoinList({ currentPageNumber }: CoinListHookProps) {
+function useCoinList({ currentPageNumber, searchValue }: CoinListHookProps) {
     const [coinList, setCoinList] = useState<CoingeckoCrypto[]>([]);
     const [fetchingCoinList, setFetchingCoinList] = useState<boolean>(false);
+    let coinName = useRef<string | null>(null).current;
 
     useEffect(() => {
-        fetchCoins();
-    }, [currentPageNumber])
+        let debounceHandler: ReturnType<typeof setTimeout>;
+        coinName = null;
+
+        if (searchValue) {
+            debounceHandler = setTimeout(() => {
+                coinName = searchValue;
+                fetchCoins();
+            }, 1000)
+        } else {
+            fetchCoins();
+        }
+
+        return () => { clearTimeout(debounceHandler) }
+    }, [searchValue, currentPageNumber])
 
     const fetchCoins = async () => {
         setFetchingCoinList(true);
 
         const params = {
             page: currentPageNumber,
-            perPage: 25
+            per_page: getItemsPerPage(),
+            names: coinName
         }
 
         try {

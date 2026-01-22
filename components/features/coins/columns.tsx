@@ -7,6 +7,7 @@ import { BsFillInfoCircleFill } from "react-icons/bs";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 import { formatValueInCompactUsd, formatValueIntoCommaSeparated, roundOffNumber } from '@/services/utils.service';
 import type { CoingeckoCrypto } from '@/interfaces/CryptoCurrency';
+import { getItemsPerPage } from '@/services/utils.service';
 
 export const columns: ColumnDef<CoingeckoCrypto>[] = [
     {
@@ -15,7 +16,7 @@ export const columns: ColumnDef<CoingeckoCrypto>[] = [
         header: ({ header }) => { return '#' },
         cell: ({ row, table }) => {
             const currentPageNumber = table.options.meta?.currentPageNumber;
-            return (row.index + 1) + (currentPageNumber === 1 ? 0 : 25)
+            return (row.index + 1) + (currentPageNumber === 1 ? 0 : getItemsPerPage())
         },
         meta: {
             headerClassNames: 'w-[5%] text-center',

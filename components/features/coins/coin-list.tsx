@@ -55,7 +55,7 @@ function CoinList() {
                 />
 
                 <div className="bottom-bar">
-                    <div className="">
+                    <div>
                         <Select
                             defaultValue={String(getRowsPerPageDefaultValue())}
                             onValueChange={(value) => { onRowsPerPageChange(value) }}

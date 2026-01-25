@@ -13,9 +13,10 @@ import { getRowsPerPageDefaultValue } from '@/services/utils.service';
 
 function CoinList() {
     const [rowsPerPage, setRowsPerPage] = useState<number>(getRowsPerPageDefaultValue());
+    const [sortingValue, setSortingValue] = useState<string>('market_cap_desc');
     const [currentPageNumber, setCurrentPageNumber] = useState(1);
     const [searchValue, setSearchValue] = useState<string>('');
-    const { fetchingCoinList, coinList } = useCoinList({ currentPageNumber, searchValue, rowsPerPage });
+    const { fetchingCoinList, coinList } = useCoinList({ currentPageNumber, searchValue, rowsPerPage, sortingValue });
     const rowsCountList = useRef([10, 25, 50, 100, 150, 200, 250]).current;
 
     function onSearchInputChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -25,6 +26,10 @@ function CoinList() {
 
     function onRowsPerPageChange(value: string) {
         setRowsPerPage(Number(value))
+    }
+
+    function setSortingValueFromDt(key: string) {
+        setSortingValue(key ? key : 'market_cap_desc')
     }
 
     return (
@@ -52,6 +57,8 @@ function CoinList() {
                     fetchingList={fetchingCoinList}
                     currentPageNumber={currentPageNumber}
                     rowsPerPage={rowsPerPage}
+                    currentSortingValue={sortingValue}
+                    sendSortingValueToParent={setSortingValueFromDt}
                 />
 
                 <div className="bottom-bar">

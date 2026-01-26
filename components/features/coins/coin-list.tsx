@@ -35,7 +35,7 @@ function CoinList() {
     return (
         <>
             <div className="coins-sst-container">
-                <div className="search-bar">
+                <div className="search-bar place-items-end">
                     <InputGroup className="max-w-xs search-input-group">
                         <InputGroupInput
                             placeholder="Search Coin Name"

@@ -1,12 +1,12 @@
 'use client';
 
 import Image from 'next/image';
+import type { CoingeckoCrypto } from '@/interfaces/CryptoCurrency';
 import { ColumnDef } from '@tanstack/react-table';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 import { formatValueInUsdCompact, formatValueIntoCommaSeparated, roundOffNumber } from '@/services/utils.service';
-import type { CoingeckoCrypto } from '@/interfaces/CryptoCurrency';
 import { ChevronsUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
@@ -22,7 +22,7 @@ export const columns: ColumnDef<CoingeckoCrypto>[] = [
             return (row.index + 1) + (currentPageNumber === 1 ? 0 : rowsPerPage)
         },
         meta: {
-            headerClassNames: 'w-[5%] text-center',
+            headerClassNames: 'min-w-[5%] text-center',
             cellClassNames: 'text-center'
         }
     }, {
@@ -36,7 +36,7 @@ export const columns: ColumnDef<CoingeckoCrypto>[] = [
             return (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="text-[12px]">
+                        <Button className="sorting-btn" variant="ghost">
                             Coin{currentSortingValue === 'id_asc' ? <ArrowUp /> :
                                 currentSortingValue === 'id_desc' ? <ArrowDown /> : <ChevronsUpDown />}
                         </Button>
@@ -172,7 +172,7 @@ export const columns: ColumnDef<CoingeckoCrypto>[] = [
             return (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="text-[12px]">
+                        <Button variant="ghost" className="sorting-btn">
                             Volume{currentSortingValue === 'volume_asc' ? <ArrowUp /> :
                                 currentSortingValue === 'volume_desc' ? <ArrowDown /> : <ChevronsUpDown />}
                         </Button>
@@ -205,13 +205,15 @@ export const columns: ColumnDef<CoingeckoCrypto>[] = [
             const totalVolume: number = row.getValue('total_volume');
             return (
                 <>
-                    <div>
-                        {totalVolume && formatValueInUsdCompact(totalVolume, 2)}
-                    </div>
+                    {totalVolume && <>
+                        <div>
+                            {formatValueInUsdCompact(totalVolume, 2)}
+                        </div>
 
-                    <div className="text-[grey] text-[12px]">
-                        {formatValueIntoCommaSeparated(totalVolume, 5, true)}
-                    </div>
+                        <div className="text-[grey] text-[12px]">
+                            {formatValueIntoCommaSeparated(totalVolume, 5, true)}
+                        </div>
+                    </>}
                 </>
             )
         },
@@ -228,7 +230,7 @@ export const columns: ColumnDef<CoingeckoCrypto>[] = [
             return (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="text-[12px]">
+                        <Button variant="ghost" className="sorting-btn">
                             Market Cap.{currentSortingValue === 'market_cap_asc' ? <ArrowUp /> :
                                 currentSortingValue === 'market_cap_desc' ? <ArrowDown /> : <ChevronsUpDown />}
                         </Button>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CryptoCurrency } from '@/interfaces/CryptoCurrency';
+import { CryptoCurrency } from '@/interfaces/crypto-currency';
 import { roundOffNumber } from '@/services/utils.service';
 
 interface MasterSymbol {

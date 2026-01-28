@@ -12,7 +12,7 @@ function GlobalMarketStats() {
         <>
             {
                 fetchingGlobalMarketStats ?
-                    <Skeleton className="rounded-md w-[830px] h-[22.75px]" /> :
+                    <Skeleton className="rounded-[var(--border-radius)] w-[830px] h-[22.75px]" /> :
                     <div className="flex">
                         {
                             globalMarketStats.totalCoins &&

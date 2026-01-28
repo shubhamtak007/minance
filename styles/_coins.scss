@@ -58,6 +58,10 @@
                     font-size: 14px;
                     line-height: 1.25rem;
 
+                    &:hover {
+                        cursor: pointer;
+                    }
+
                     &:last-child {
                         border-bottom: unset;
                     }

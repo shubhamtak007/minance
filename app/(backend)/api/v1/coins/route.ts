@@ -32,7 +32,7 @@ export async function GET(request: Request) {
 
     try {
         const response = await coinGeckoApiProperties.get('v3/coins/markets', { params: queryParameters });
-        return NextResponse.json(response.data);
+        return NextResponse.json(response.data, { status: 200 });
 
     } catch (error) {
         return handleApiError(error);

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "Coinova - The new force in crypto.",
     description: "The new force in crypto.",
     icons: {
-        icon: 'coins.svg'
+        icon: '/coins.svg'
     }
 };
 

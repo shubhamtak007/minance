@@ -8,7 +8,7 @@ interface CoinListHookProps {
     currentPageNumber: number,
     searchValue: string,
     rowsPerPage: number,
-    sortingValue: string
+    sortingValue: string | null
 }
 
 function useCoinList({ currentPageNumber, searchValue, rowsPerPage, sortingValue }: CoinListHookProps) {

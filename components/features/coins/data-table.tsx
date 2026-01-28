@@ -1,4 +1,4 @@
-import { ColumnDef, useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table';
+import { ColumnDef, useReactTable, getCoreRowModel, flexRender, Row } from '@tanstack/react-table';
 import { Spinner } from '@/components/ui/spinner';
 
 interface DataTableProps<TData> {
@@ -8,11 +8,12 @@ interface DataTableProps<TData> {
     fetchingList?: boolean,
     currentPageNumber?: number,
     rowsPerPage?: number,
-    currentSortingValue: string,
-    sendSortingValueToParent: (key: string) => void
+    currentSortingValue: string | null,
+    sendSortingValueToParent: (key: string) => void,
+    onRowClicked: (row: Row<TData>) => void
 }
 
-function DataTable<TData,>({ sendSortingValueToParent, ...props }: DataTableProps<TData>) {
+function DataTable<TData,>({ sendSortingValueToParent, onRowClicked, ...props }: DataTableProps<TData>) {
     const tableConfig = useReactTable<TData>({
         data: props.list,
         columns: props.columns,
@@ -23,7 +24,7 @@ function DataTable<TData,>({ sendSortingValueToParent, ...props }: DataTableProp
             currentPageNumber: props.currentPageNumber,
             rowsPerPage: props.rowsPerPage,
             sortBy: (key: string) => sendSortingValueToParent(key)
-        }
+        },
     });
 
     return (
@@ -71,6 +72,7 @@ function DataTable<TData,>({ sendSortingValueToParent, ...props }: DataTableProp
                                 <tr
                                     key={row.id}
                                     data-state={row.getIsSelected() && "selected"}
+                                    onClick={() => { onRowClicked(row) }}
                                 >
                                     {
                                         row.getVisibleCells().map((cell) => (

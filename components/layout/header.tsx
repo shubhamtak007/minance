@@ -1,12 +1,13 @@
 import { Coins } from 'lucide-react';
 import GlobalMarketStats from '@/components/features/global-market-stats';
+import Link from 'next/link';
 
 function Header() {
     return (
         <>
             <div className="header-container">
                 <div className="navbar max-w-6xl mx-auto">
-                    <div className="logo uppercase flex items-center">
+                    <Link href="/" className="logo uppercase flex items-center">
                         <Coins
                             strokeWidth={2}
                             size={30}
@@ -16,7 +17,7 @@ function Header() {
                         <div className="tracking-[1px]">
                             Coinova
                         </div>
-                    </div>
+                    </Link>
 
                     <div>
                         <GlobalMarketStats />

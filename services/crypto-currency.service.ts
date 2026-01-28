@@ -7,8 +7,16 @@ interface MasterSymbol {
     quoteAsset: string
 }
 
-const binanceApiProperties = axios.create({
+const binanceApiConfig = axios.create({
     baseURL: 'https://api.binance.com/api/',
+    headers: {
+        accept: 'application/json'
+    }
+})
+
+const coinovaApiConfig = axios.create({
+    baseURL: process.env.NODE_ENV === 'development' ? process.env.NEXT_PUBLIC_DEV_API_BASE_URL :
+        process.env.NEXT_PUBLIC_PROD_API_BASE_URL,
     headers: {
         accept: 'application/json'
     }
@@ -16,7 +24,7 @@ const binanceApiProperties = axios.create({
 
 const retrieveCoinList = async (apiParams: unknown) => {
     try {
-        const response = await axios.get('api/v1/coins', { params: apiParams });
+        const response = await coinovaApiConfig.get('v1/coins', { params: apiParams });
         return response;
     } catch (error) {
         throw error;
@@ -27,7 +35,7 @@ const retrieveCoinList = async (apiParams: unknown) => {
 
 const retrieveTrendingCoins = async () => {
     try {
-        const response = await axios.get('api/v1/trending');
+        const response = await coinovaApiConfig.get('v1/trending');
         return response.data.coins;
     } catch (error) {
         throw error;
@@ -38,7 +46,7 @@ const retrieveTrendingCoins = async () => {
 
 const retrieveGlobalMarketData = async () => {
     try {
-        const response = await axios.get('api/v1/globalMarket');
+        const response = await coinovaApiConfig.get(`v1/globalMarket`);
         return response.data.data;
     } catch (error) {
         throw error;
@@ -54,8 +62,8 @@ const retrieveAllCoins = async () => {
 
     try {
         const promises = [
-            binanceApiProperties.get('v3/exchangeInfo', { params: queryParameters }),
-            binanceApiProperties.get('v3/ticker/24hr', { params: queryParameters })
+            binanceApiConfig.get('v3/exchangeInfo', { params: queryParameters }),
+            binanceApiConfig.get('v3/ticker/24hr', { params: queryParameters })
         ]
 
         const responses = await Promise.all(promises);

@@ -10,7 +10,7 @@ declare module '@tanstack/react-table' {
         fetchingList?: boolean,
         currentPageNumber?: number,
         rowsPerPage?: number,
-        currentSortingValue: string,
+        currentSortingValue: string | null,
         sortBy?(key: string): void
     }
 }

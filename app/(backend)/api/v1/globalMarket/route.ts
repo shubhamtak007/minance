@@ -33,6 +33,8 @@ export async function GET(request: Request) {
 
         return NextResponse.json({
             data: responseDataJson.data ? createGlobalMarketStatistics(responseDataJson.data) : {}
+        }, {
+            status: 200
         });
 
     } catch (error) {

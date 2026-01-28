@@ -260,6 +260,13 @@ export const columns: ColumnDef<CoingeckoCrypto>[] = [
                         >
                             Desc<ArrowDown />
                         </DropdownMenuItem>
+
+                        <DropdownMenuItem
+                            disabled={!currentSortingValue?.startsWith('market_cap')}
+                            onSelect={() => { sortByFn(null) }}
+                        >
+                            Reset
+                        </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

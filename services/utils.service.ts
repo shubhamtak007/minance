@@ -1,6 +1,5 @@
 function roundOffNumber(value: number, decimalPlaces: number) {
     if (value === null || value === undefined) {
-        console.trace();
         throw new Error('Value is undefined or null');
     }
     return Math.round((value + Number.EPSILON) * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces);
